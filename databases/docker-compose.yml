@@ -16,3 +16,4 @@ services:
     restart: always
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}"
+      - "TZ=${MYSQL_TZ}"
