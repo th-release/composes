@@ -17,3 +17,21 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}"
       - "TZ=${MYSQL_TZ}"
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_ROOT_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@example.com
+  #     PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD}
+  #   ports:
+  #     - "5433:80"
+  #   depends_on:
+  #     - postgr
