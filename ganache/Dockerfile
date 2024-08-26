@@ -1,0 +1,13 @@
+FROM node:20.17.0-alpine3.20
+
+RUN npm install -g ganache-cli
+
+ENV HOST=0.0.0.0
+ENV PORT=8545
+ENV NETWORK_ID=5777
+ENV ACCOUNTS=10
+ENV DEFAULT_BALANCE_ETHER=5000000
+ENV GAS_LIMIT=336098750000
+ENV GAS_PRICE=1000000000000000
+
+CMD ["sh", "-c", "ganache-cli --host $HOST --port $PORT --networkId $NETWORK_ID --accounts $ACCOUNTS --defaultBalanceEther $DEFAULT_BALANCE_ETHER --gasLimit $GAS_LIMIT --gasPrice $GAS_PRICE"]
