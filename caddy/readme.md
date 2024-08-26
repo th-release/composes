@@ -5,4 +5,4 @@
 > echo "" > Caddyfile\
 > sudo mkdir -p ./data\
 > sudo chown -R 1000:1000 ./data\
-> sudo chmod -R 755 ./data\
+> sudo chmod -R 755 ./data
