@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   caddy:
@@ -8,13 +8,9 @@ services:
     networks:
       - caddy
     volumes:
-      - ./data:/data
-      - ./config:/config
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./templates:/etc/caddy/templates
-      - /var/www:/var/www
-      - ./access.log:/var/log/caddy/access.log:rw
-      - ./conf.d:/conf.d
+      - ./data/caddy:/data
+      - .access.log:/var/log/caddy/access.log:rw
     environment:
       - CADDY_ADMIN=0.0.0.0:2023
     expose:
