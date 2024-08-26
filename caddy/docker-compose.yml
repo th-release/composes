@@ -1,23 +1,31 @@
-version: '3.8'
+version: "3.8"
 
 services:
   caddy:
-    image: caddy:latest
-    container_name: caddy
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-      - ./Caddyfile:/etc/caddy/Caddyfile
+    build: .
+    restart: always
+    user: 1000:1000
     networks:
       - caddy
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./templates:/etc/caddy/templates
+      - /var/www:/var/www
+      - ./access.log:/var/log/caddy/access.log:rw
+      - ./conf.d:/conf.d
+    environment:
+      - CADDY_ADMIN=0.0.0.0:2023
+    expose:
+      - "2023"
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "443:443/udp"
 
 networks:
   caddy:
+    driver: bridge
+    name: caddy
     external: true
-
-volumes:
-  caddy_data:
-  caddy_config:
