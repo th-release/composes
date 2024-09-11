@@ -1,0 +1,20 @@
+services:
+  eth:
+    image: ethereum/client-go:stable
+    container_name: ethereum
+    volumes:
+      - ./data:/root/.ethereum #./data 디렉토리 폴더를 만들어야 합니다.
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+    command:
+      - --http
+      - --http.addr=0.0.0.0
+      - --http.port=8545
+      - --http.api=eth,net,web3
+      - --http.corsdomain=*
+      - --http.vhosts=*
+      - --syncmode=snap
+      - --networkid=1
+      - --cache=2048 # Optional: Adjust the cache for better performance
+    restart: unless-stopped
