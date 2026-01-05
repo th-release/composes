@@ -2,16 +2,16 @@ version: '3.8'
 
 services:
   ganache:
-    image: trufflesuite/ganache-cli:latest
+    image: ganache-custom:1.0.0
     container_name: ganache
     ports:
-      - "8545:8545"  # Ganache가 사용하는 기본 포트
-    command: ganache-cli --host 0.0.0.0 --port 8545 --networkId 5777 --accounts 5 --defaultBalanceEther 5000000 --gasLimit 336098750000 --gasPrice 1000000000000000
-    networks:
-      - ganache-network
-    restart: always
-    
-
-networks:
-  ganache-network:
-    driver: bridge
+      - "8545:8545"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8545
+      - NETWORK_ID=12345
+      - ACCOUNTS=10
+      - DEFAULT_BALANCE_ETHER=5000000
+      - GAS_LIMIT=336098750000
+      - GAS_PRICE=1000000000000000
+    restart: unless-stopped 
